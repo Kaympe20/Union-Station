@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Bar from '$lib/Bar.svelte';
 	import {views} from '$lib/utils'
+    import TransitRouteCard from '$lib/TransitRouteCard.svelte';
+    import { transitModes } from '$lib/utils'
     let currentView = $state(views.Home)
 </script>
 
@@ -8,3 +10,4 @@
 <p>
     {currentView}
 </p>
+<TransitRouteCard activeTransitMode={"bike"}></TransitRouteCard>

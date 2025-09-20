@@ -8,7 +8,8 @@
         passengerRail: "Passenger Rail",
         bus: "Bus",
         plane: "Plane",
-        transfer: "Transfer"
+        transfer: "Transfer",
+        unknown: "Unknown"
     }
 
     let { activeTransitMode } = $props();
@@ -19,7 +20,7 @@
 </script>
 
 <style>
-    
+
 </style>
 
 <div>

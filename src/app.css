@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+@font-face {
+    font-family: "Adwaita Sans";
+    src: url("/AdwaitaSans-Regular.woff2");
+}
+
+
+
+:root {
+    font-family: 'Adwaita Sans';
+    @apply bg-[#564666ff] text-white;
+}

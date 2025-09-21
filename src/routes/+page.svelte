@@ -8,11 +8,19 @@
     import MyTrips from '$lib/views/MyTrips.svelte';
     import Plan from '$lib/views/Plan.svelte';
 
-    let currentView = $state(Home);
+    let currentView = $state("Home");
 </script>
 
 <Bar bind:currentView={currentView} />
 
 <div class="p-4">
-    <svelte:component this={currentView} />
+    {#if currentView === "Home"}
+    <Home></Home>
+    {:else if currentView === "About"}
+    <About></About>
+    {:else if currentView === "MyTrips"}
+    <MyTrips></MyTrips>
+    {:else if currentView === "Plan"}
+    <Plan></Plan>
+    {/if}
 </div>

@@ -21,7 +21,6 @@
 </div>
 
 <div class="p-4">
-    <p>{currentView}</p>
     {#if currentView === "Home"}
     <Home></Home>
     {:else if currentView === "About"}

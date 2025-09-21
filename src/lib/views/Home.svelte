@@ -19,7 +19,10 @@
     let newTripSegments = $state<TripSegment[]>([]);
 
     let showNewSegmentModal = $state(false);
-
+    const formDoneCallback = () => {
+        newTripSegments.push(JSON.parse(JSON.stringify(segmentData!)))
+        showNewSegmentModal = false;
+    }
     let cookieCache = $derived(
         () => `{
             "name": "${newTripName}",
@@ -51,8 +54,8 @@
             <!-- svelte-ignore a11y_click_events_have_key_events -->
             <!-- svelte-ignore a11y_no_static_element_interactions -->
             {#if showNewSegmentModal}
-                <div class="absolute w-screen h-screen bg-black opacity-30" onclick={() => {showNewSegmentModal = false}}>
-                    <NewSegmentModal bind:segment={segmentData}/>
+                <div id="seg-modal-wrapper" class="absolute w-screen h-screen top-0 left-0 backdrop-blur-md bg-[#0006] z-1">
+                    <NewSegmentModal bind:segment={segmentData} formDoneCallback={formDoneCallback}/>
                 </div>
             {/if}
             <button class="cursor-pointer rounded-2xl bg-[#6b5780ff] px-4 py-2 font-bold text-white hover:bg-[#2e1e3f] duration-450" onclick={() => {showNewSegmentModal = true}}>Add Segment</button>

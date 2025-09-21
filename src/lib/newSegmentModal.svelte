@@ -16,6 +16,8 @@
 
     let missingItems = $state(false);
 
+	let { segment = $bindable(), ...props } = $props();
+
 	$effect(() => {
 		console.log('Departure Time:', departureTimeOutput);
 		console.log('Arrival Time:', arrivalTimeOutput);
@@ -30,20 +32,12 @@
         } else {
             missingItems = false;
         }
-		const segment = {
+		segment = {
 			departureTime: departureTime(),
 			arrivalTime: arrivalTime(),
 			cost: cost(),
 			transitMode: selectedTransitMode
 		};
-
-		if (!document.cookie) {
-			document.cookie = `trips=[{"segments":[${JSON.stringify(segment)}]}]`;
-		} else {
-			let existingTrips = JSON.parse(document.cookie.split('=')[1]);
-			existingTrips[0].segments.push(segment);
-			document.cookie = `trips=${JSON.stringify(existingTrips)}`;
-		}
 
 		console.log('Segment saved:', segment);
 

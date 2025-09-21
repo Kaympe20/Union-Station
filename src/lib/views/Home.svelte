@@ -7,6 +7,8 @@
 
     let newTripName = $state("");
 
+    let segmentData: TripSegment | undefined = $state();
+
     type TripSegment = {
         transitMode: string;
         departure: string | Date;
@@ -15,6 +17,8 @@
     };
 
     let newTripSegments = $state<TripSegment[]>([]);
+
+    let showNewSegmentModal = $state(false);
 
     let cookieCache = $derived(
         () => `{
@@ -40,12 +44,20 @@
                         activeTransitMode={segment.transitMode} 
                         departure={new Date(segment.departure)} 
                         arrival={new Date(segment.arrival)} 
-                        cost={segment.cost} 
+                        cost={segment.cost}
                     />
                 {/each}
             </div>
+            <!-- svelte-ignore a11y_click_events_have_key_events -->
+            <!-- svelte-ignore a11y_no_static_element_interactions -->
+            {#if showNewSegmentModal}
+                <div class="absolute w-screen h-screen bg-black opacity-30" onclick={() => {showNewSegmentModal = false}}>
+                    <NewSegmentModal bind:segment={segmentData}/>
+                </div>
+            {/if}
+            <button class="cursor-pointer rounded-2xl bg-[#6b5780ff] px-4 py-2 font-bold text-white hover:bg-[#2e1e3f] duration-450" onclick={() => {showNewSegmentModal = true}}>Add Segment</button>
         </div>
-        
+
     {/if}
     
 </div>

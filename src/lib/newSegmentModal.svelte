@@ -16,7 +16,7 @@
 
     let missingItems = $state(false);
 
-	let { segment = $bindable(), ...props } = $props();
+	let { segment = $bindable(), formDoneCallback, ...props } = $props();
 
 	$effect(() => {
 		console.log('Departure Time:', departureTimeOutput);
@@ -32,23 +32,20 @@
         } else {
             missingItems = false;
         }
-		segment = {
-			departureTime: departureTime(),
-			arrivalTime: arrivalTime(),
-			cost: cost(),
-			transitMode: selectedTransitMode
-		};
+        segment = {
+            departure: departureTime(),
+            arrival: arrivalTime(),
+            cost: cost(),
+            transitMode: selectedTransitMode
+        };
 
-		console.log('Segment saved:', segment);
-
-		if (nodeRef && nodeRef.parentNode) {
-			nodeRef.parentNode.removeChild(nodeRef);
-		}
-	}
+        console.log('Segment saved:', segment);
+        formDoneCallback();
+    }
 </script>
 
 <div
-	class="flex h-auto w-200 md:w-full flex-col items-center gap-10 rounded-2xl border-1 border-black bg-[#473a54] p-5 text-center"
+	class="flex h-auto w-200 md:w-full flex-col items-center gap-10 rounded-2xl border-1 border-black p-5 text-center z-99 relative"
     bind:this={nodeRef}
 >
 	<div>

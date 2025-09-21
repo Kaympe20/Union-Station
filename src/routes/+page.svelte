@@ -10,4 +10,4 @@
 <p>
     {currentView}
 </p>
-<TransitRouteCard activeTransitMode={"bike"}></TransitRouteCard>
+<TransitRouteCard activeTransitMode={"bike"} departure={new Date("2025-09-20T07:00:00Z")} arrival={new Date("2025-09-20T08:00:00Z")} cost={123.45}></TransitRouteCard>

@@ -29,6 +29,7 @@
 	},
 	"dependencies": {
 		"@vite-pwa/sveltekit": "^1.0.0",
+		"svelty-picker": "^6.1.6",
 		"vite-plugin-pwa": "^1.0.3"
 	}
 }

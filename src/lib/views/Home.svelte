@@ -43,12 +43,14 @@
             <input type="text" bind:value={newTripName} class="h-12 w-full rounded-md border-2 border-gray-300 p-2" placeholder="Trip Name"/>
             <div class="auto-cols-auto table-auto">
                 {#each newTripSegments as segment}
+                <div class="m-6">
                     <TransitRouteCard 
                         activeTransitMode={segment.transitMode} 
                         departure={segment.departure instanceof Date ? segment.departure : new Date(segment.departure)} 
                         arrival={segment.arrival instanceof Date ? segment.arrival : new Date(segment.arrival)} 
                         cost={segment.cost}
                     />
+                    </div>
                 {/each}
             </div>
             <!-- svelte-ignore a11y_click_events_have_key_events -->

@@ -42,11 +42,11 @@
             <h1 class="text-4xl font-extrabold text-white mb-5">New Trip</h1>
             <input type="text" bind:value={newTripName} class="h-12 w-full rounded-md border-2 border-gray-300 p-2" placeholder="Trip Name"/>
             <div class="auto-cols-auto table-auto">
-                {#each newTripSegments as segment, index}
+                {#each newTripSegments as segment}
                     <TransitRouteCard 
                         activeTransitMode={segment.transitMode} 
-                        departure={new Date(segment.departure)} 
-                        arrival={new Date(segment.arrival)} 
+                        departure={segment.departure instanceof Date ? segment.departure : new Date(segment.departure)} 
+                        arrival={segment.arrival instanceof Date ? segment.arrival : new Date(segment.arrival)} 
                         cost={segment.cost}
                     />
                 {/each}

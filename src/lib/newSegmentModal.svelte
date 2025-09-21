@@ -32,16 +32,16 @@
         } else {
             missingItems = false;
         }
-		segment = {
-			departureTime: departureTime(),
-			arrivalTime: arrivalTime(),
-			cost: cost(),
-			transitMode: selectedTransitMode
-		};
+        segment = {
+            departure: departureTime(),
+            arrival: arrivalTime(),
+            cost: cost(),
+            transitMode: selectedTransitMode
+        };
 
-		console.log('Segment saved:', segment);
+        console.log('Segment saved:', segment);
         formDoneCallback();
-	}
+    }
 </script>
 
 <div

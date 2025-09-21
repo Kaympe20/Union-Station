@@ -54,7 +54,7 @@
 </script>
 
 <div
-	class="flex h-auto w-200 flex-col items-center gap-10 rounded-2xl border-1 border-black bg-[#473a54] p-5 text-center"
+	class="flex h-auto w-200 md:w-full flex-col items-center gap-10 rounded-2xl border-1 border-black bg-[#473a54] p-5 text-center"
     bind:this={nodeRef}
 >
 	<div>

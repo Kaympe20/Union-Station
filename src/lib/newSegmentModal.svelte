@@ -11,6 +11,10 @@
 	let cost = $derived(() => parseFloat(costOutput));
 
 	let selectedTransitMode = $state('');
+    
+    let nodeRef: HTMLElement;
+
+    let missingItems = $state(false);
 
 	$effect(() => {
 		console.log('Departure Time:', departureTimeOutput);
@@ -20,6 +24,12 @@
 	});
 
 	function save() {
+        if (!departureTimeOutput || !arrivalTimeOutput || !costOutput || !selectedTransitMode) {
+            missingItems = true;
+            return;
+        } else {
+            missingItems = false;
+        }
 		const segment = {
 			departureTime: departureTime(),
 			arrivalTime: arrivalTime(),
@@ -36,11 +46,16 @@
 		}
 
 		console.log('Segment saved:', segment);
+
+		if (nodeRef && nodeRef.parentNode) {
+			nodeRef.parentNode.removeChild(nodeRef);
+		}
 	}
 </script>
 
 <div
 	class="flex h-auto w-200 flex-col items-center gap-10 rounded-2xl border-1 border-black bg-[#473a54] p-5 text-center"
+    bind:this={nodeRef}
 >
 	<div>
 		<p class="mb-2 text-2xl font-bold">Departure</p>
@@ -86,8 +101,11 @@
 		</div>
 	</div>
 
+    {#if missingItems}
+        <p class="text-red-500">Please fill in all fields before saving.</p>
+    {/if}
+
 	<button
 		class="cursor-pointer rounded-2xl bg-[#6b5780ff] px-4 py-2 font-bold text-white hover:bg-[#5a4670ff]"
-		onclick={save}>Save</button
-	>
+		onclick={save}>Save</button>
 </div>

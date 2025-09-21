@@ -29,6 +29,20 @@
             "segments": "${newTripSegments}"
         }`  
     );
+
+    function parseCookie() {
+        if (!document.cookie.includes('trips=')) {
+            document.cookie = "trips=[]"
+        }
+        return JSON.parse(document.cookie.split('=')[1]);
+    }
+
+    function saveCookie() {
+        if (browser) {
+
+            document.cookie = `trips=${parseCookie().push(cookieCache)}`;
+        }
+    }
 </script>
 
 <div>
@@ -61,8 +75,7 @@
                 </div>
             {/if}
             <button class="cursor-pointer rounded-2xl bg-[#6b5780ff] px-4 py-2 font-bold text-white hover:bg-[#2e1e3f] duration-450" onclick={() => {showNewSegmentModal = true}}>Add Segment</button>
+            <button class="cursor-pointer rounded-2xl bg-[#6b5780ff] px-4 py-2 font-bold text-white hover:bg-[#2e1e3f] duration-450 ml-5" onclick={saveCookie}>Save Trip</button>
         </div>
-
     {/if}
-    
 </div>

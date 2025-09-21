@@ -1,5 +1,5 @@
 <script lang="ts">
-    let cookie = $state(document.cookie[0])
+    let cookie = $state(document.cookie)
 </script>
 
 <p>{cookie}</p>

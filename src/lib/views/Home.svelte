@@ -24,23 +24,36 @@
         showNewSegmentModal = false;
     }
     let cookieCache = $derived(
-        () => `{
-            "name": "${newTripName}",
-            "segments": "${newTripSegments}"
-        }`  
+        () => ({
+            name: newTripName,
+            segments: newTripSegments
+        })
     );
 
     function parseCookie() {
-        if (!document.cookie.includes('trips=')) {
-            document.cookie = "trips=[]"
+        const cookies = document.cookie.split(';');
+        const tripsCookie = cookies.find(cookie => cookie.trim().startsWith('trips='));
+        
+        if (!tripsCookie) {
+            document.cookie = "trips=[]";
+            return [];
         }
-        return JSON.parse(document.cookie.split('=')[1]);
+        
+        const tripsValue = tripsCookie.split('=')[1];
+        try {
+            return JSON.parse(tripsValue);
+        } catch (error) {
+            console.error('Error parsing trips cookie:', error);
+            document.cookie = "trips=[]";
+            return [];
+        }
     }
 
     function saveCookie() {
         if (browser) {
-
-            document.cookie = `trips=${parseCookie().push(cookieCache)}`;
+            const trips = parseCookie();
+            trips.push(cookieCache());
+            document.cookie = `trips=${JSON.stringify(trips)}`;
         }
     }
 </script>

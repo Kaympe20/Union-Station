@@ -2,6 +2,7 @@
 
 A Calendar-like multimodal trip planner
 
+[![Athena Award Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Faward.athena.hackclub.com%2Fapi%2Fbadge)](https://award.athena.hackclub.com?utm_source=readme)
 ---
 I made this project because on all of my trips, I generally use [The Transit App](https://transitapp.com/), and it doesn't always have reliable data of transfers, durations, and whether you can bring your bike on **with no way to override the info**. It also drains your battery like crazy when open. I wanted an app that addressed both of these, which is why Union Station is based on user-inputed data and creates static descriptions that don't require GPS.
 
